@@ -29,6 +29,10 @@ class Cursor(object):
 
         self.arraysize = 1
 
+        # Begin non-PEP attributes
+        self.columns_with_types = None
+        # End non-PEP attributes
+
         super(Cursor, self).__init__()
 
     def __repr__(self):
@@ -291,6 +295,8 @@ class Cursor(object):
 
         else:
             rows, columns_with_types = response
+
+        self.columns_with_types = columns_with_types
 
         # Only SELECT queries have columns_with_types.
         # DDL and INSERT INTO ... SELECT queries have empty columns header.
